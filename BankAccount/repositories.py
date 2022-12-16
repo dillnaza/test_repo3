@@ -1,6 +1,6 @@
 import decimal
 from typing import List, Optional
-from BankAccount.exeptions import IINnotFoundError
+from BankAccount.exeptions import IINnotFoundError, IINfound
 from BankAccount.models import BankAccount, Account
 
 
@@ -8,7 +8,14 @@ class BankAccRepositories:
     Accounts: List[BankAccount] = []
 
     def create_account(self, name: str, surname: str, iin: str, account: str, accounttype: str) -> None:
-        bankaccount = BankAccount(name=name, surname=surname, iin=iin, account=account, accounttype=accounttype)
+        bankaccount = next(
+            (i for i in self.Accounts if iin == i.iin),
+            None
+        )
+        if not bankaccount:
+            bankaccount = BankAccount(name=name, surname=surname, iin=iin, account=account, accounttype=accounttype)
+        else:
+            raise IINfound
         self.Accounts.append(bankaccount)
 
     def delete_account(self, iin: str) -> None:
@@ -18,6 +25,7 @@ class BankAccRepositories:
         )
         if not bankaccount:
             raise IINnotFoundError
+
         self.Accounts.remove(bankaccount)
 
     def check_iin(self, iin: str) -> Optional[BankAccount]:
@@ -38,9 +46,9 @@ class BankAccRepositories:
         if not bankaccount:
             raise IINnotFoundError
 
-        print(f'Имя и фамилия пользователя: {bankaccount.name} {bankaccount.surname}\n'
-              f'Остаток на счету: {bankaccount.account}\n'
-              f'Валюта счета : {bankaccount.accounttype}')
+        return'''Имя и фамилия пользователя: {bankaccount.name} {bankaccount.surname}\n
+              Остаток на счету: {bankaccount.account}\n
+              Валюта счета : {bankaccount.accounttype}'''
 
     def addToBankAccount(self, numeric: float) -> None:
         self.account += numeric

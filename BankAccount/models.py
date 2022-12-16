@@ -16,7 +16,7 @@ class BankAccount:
     account: decimal.Decimal
     iin: str
     accounttype: Account
-    fullname:str
+    fullname: str
 
     def __init__(self, name: str, surname: str, iin: str, accounttype: Account = None, account: decimal.Decimal = None):
         self.name = name

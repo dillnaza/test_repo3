@@ -1,14 +1,14 @@
-from typing import  Optional, Protocol
+from typing import Optional, Protocol
 
 from BankAccount.models import BankAccount
 
 
 class BankAccRepositoriesInterfaces(Protocol):
 
-    def create_account(self, name: str, surname: str, iin: str, account:str, accounttype:str) -> None:
+    def create_account(self, name: str, surname: str, iin: str, account: str, accounttype: str) -> None:
         raise NotImplementedError
 
-    def delete_account(self, iin: str) ->None:
+    def delete_account(self, iin: str) -> None:
         raise NotImplementedError
 
     def check_iin(self, iin: str) -> Optional[BankAccount]:
