@@ -13,16 +13,34 @@ def init():
     while True:
         print('''Введите ваше действие:
                1. Создание пользователя
-               2. Изменить данные о пользо вателя
+               2. Изменить данные о пользователя
                3. Показать данные о пользователя
-               4. Выйти''')
-        command = input()
+               4. Удалить данные о пользователя
+               5. Выйти''')
+        command = int(input())
         match command:
             case 1:
                 name = input('Введите имя: ')
                 surname = input('Введите фамилию: ')
                 iin = input('Введите ИИН: ')
-                bankAcchandler.sign_up(name=name, surname=surname, iin=iin)
+                print('''Выберите валюту счета: 
+                        1. USD
+                        2. RUB
+                        3. KZT
+                        4. EUR''')
+                accounttypenumber = int(input())
+                match accounttypenumber:
+                    case 1:
+                        accounttype = 'USD'
+                    case 2:
+                        accounttype = 'RUB'
+                    case 3:
+                        accounttype = 'KZT'
+                    case 4:
+                        accounttype = 'EUR'
+
+                account = input('Введите остаток в счету: ')
+                bankAcchandler.sign_up(name=name, surname=surname, iin=iin, account=account, accounttype=accounttype)
 
             case 2:
                 iin = input('Введите ИИН пользователя:')
@@ -38,9 +56,9 @@ def init():
 
                 match check:
                     case 1:
-                        name = input('Введите новое значение ИМЯ')
+                        name = input('Введите новое значение ИМЯ: ')
                     case 2:
-                        surname = input('Введите новое значение ФАМИЛИЯ')
+                        surname = input('Введите новое значение ФАМИЛИЯ: ')
                     case 3:
                         iin = input('')
                     case 4:
@@ -50,13 +68,16 @@ def init():
                         substract = float(input('Сколько хотите убавить: '))
                         bankAccRepositories.substractFromBankAccount = substract
                     case 6:
-                        print('Введите данные другого пользователя:')
+                        print('Введите данные другого пользователя: ')
 
             case 3:
-                iin = input('Введите ИИН пользователя:')
+                iin = input('Введите ИИН пользователя: ')
                 print(bankAcchandler.toString(iin=iin))
 
             case 4:
+                iin = input('Введите ИИН пользователя: ')
+                bankAcchandler.delete_acc(iin)
+            case 5:
                 sys.exit(0)
 
 
