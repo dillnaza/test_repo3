@@ -12,11 +12,11 @@ def init():
 
     while True:
         print('''Введите ваше действие:
-               1. Создание пользователя
-               2. Изменить данные о пользователя
-               3. Показать данные о пользователя
-               4. Удалить данные о пользователя
-               5. Выйти''')
+            1. Создание пользователя
+            2. Изменить данные о пользователя
+            3. Показать данные о пользователя
+            4. Удалить данные о пользователя
+            5. Выйти''')
         command = int(input())
         match command:
             case 1:
@@ -24,10 +24,10 @@ def init():
                 surname = input('Введите фамилию: ')
                 iin = input('Введите ИИН: ')
                 print('''Выберите валюту счета: 
-                        1. USD
-                        2. RUB
-                        3. KZT
-                        4. EUR''')
+                    1. USD
+                    2. RUB
+                    3. KZT
+                    4. EUR''')
                 accounttypenumber = int(input())
                 match accounttypenumber:
                     case 1:
@@ -45,13 +45,14 @@ def init():
             case 2:
                 iin = input('Введите ИИН пользователя:')
                 bankAcchandler.get_bankacc(iin=iin)
-                print('Что изменить в пользователя: ')
-                print('1. Имя')
-                print('2. Фамилия')
-                print('3. ИИН')
-                print('4. Добавление деньги на счет')
-                print('5. Удаление деньги со счета')
-                print('6. Перевод денег')
+                print('''Что изменить в пользователя: 
+                    1. Имя
+                    2. Фамилия
+                    3. ИИН
+                    4. Добавление деньги на счет
+                    5. Удаление деньги со счета
+                    6. Добавить новый счет
+                    7. Перевод денег''')
                 check = input()
 
                 match check:
@@ -62,13 +63,41 @@ def init():
                     case 3:
                         iin = input('')
                     case 4:
-                        add = float(input('Сколько хотите добавить: '))
+                        print('''На какой счет хотите добавить: 
+                            1. USD
+                            2. RUB
+                            3. KZT
+                            4. EUR''')
+                        add = float(input())
                         bankAccRepositories.addToBankAccount = add
                     case 5:
-                        substract = float(input('Сколько хотите убавить: '))
+                        print('''С какого счета хотите убавить: 
+                            1. USD
+                            2. RUB
+                            3. KZT
+                            4. EUR''')
+                        substract = float(input())
                         bankAccRepositories.substractFromBankAccount = substract
                     case 6:
-                        print('Введите данные другого пользователя: ')
+                        print('Введите ИИН пользователя: ')
+                    case 7:
+                        print('Введите ИИН второго пользователя: ')
+                        iin=input()
+                        print('''Выберите валюту счета: 
+                            1. USD
+                            2. RUB
+                            3. KZT
+                            4. EUR''')
+                        accounttypenumber = int(input())
+                        match accounttypenumber:
+                            case 1:
+                                accounttype = 'USD'
+                            case 2:
+                                accounttype = 'RUB'
+                            case 3:
+                                accounttype = 'KZT'
+                            case 4:
+                                accounttype = 'EUR'
 
             case 3:
                 iin = input('Введите ИИН пользователя: ')
