@@ -17,14 +17,14 @@ class BankAccServices(NamedTuple):
 
     def delete_account(self, iin: str) -> None:
         try:
-            self.repositories.toString(iin=iin)
+            self.repositories.delete_account(iin=iin)
             print(f'Пользователь удален из списка')
         except IINnotFoundError as e:
             print(e)
 
     def check_iin(self, iin: str) -> Optional[BankAccount]:
         try:
-            self.repositories.toString(iin=iin)
+            self.repositories.check_iin(iin=iin)
         except IINnotFoundError as e:
             print(e)
 

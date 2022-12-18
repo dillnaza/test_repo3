@@ -15,7 +15,6 @@ class BankAccHandlers():
         name = name.strip()
         surname = surname.strip()
         iin = iin.strip()
-        account = account.strip()
         accounttype = accounttype.strip()
 
         if len(iin) != 12:

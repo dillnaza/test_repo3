@@ -46,9 +46,8 @@ class BankAccRepositories:
         if not bankaccount:
             raise IINnotFoundError
 
-        return'''Имя и фамилия пользователя: {bankaccount.name} {bankaccount.surname}\n
-              Остаток на счету: {bankaccount.account}\n
-              Валюта счета : {bankaccount.accounttype}'''
+        print(f'''Пользователь: {bankaccount.name} {bankaccount.surname}
+Валюта счета : {bankaccount.accounttype}, oстаток на этом счету: {bankaccount.account}''')
 
     def addToBankAccount(self, numeric: float) -> None:
         self.account += numeric
